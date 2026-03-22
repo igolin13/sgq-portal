@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard, FileText, AlertCircle, ShieldAlert,
-  Truck, Bot, ChevronRight, Bell, Search, Menu, X, ClipboardList, ClipboardCheck, Wrench
+  Truck, Bot, ChevronRight, Bell, Search, Menu, X, ClipboardList, ClipboardCheck, Wrench, CalendarDays
 } from 'lucide-react'
 
 import Dashboard from './pages/Dashboard'
@@ -14,9 +14,11 @@ import Copilot from './pages/Copilot'
 import Cinco5S from './pages/Cinco5S'
 import AuditoriaProcesso from './pages/AuditoriaProcesso'
 import Calibracao from './pages/Calibracao'
+import PlanejamentoAnual from './pages/PlanejamentoAnual'
 
 const navItems = [
   { to: '/',            icon: LayoutDashboard, label: 'Dashboard',           section: 'principal' },
+  { to: '/planejamento', icon: CalendarDays, label: 'Planejamento anual', section: 'principal' },
   { to: '/documentos',  icon: FileText,         label: 'Documentos',          section: 'principal', count: 142 },
   { to: '/nc',          icon: AlertCircle,      label: 'Não conformidades',   section: 'gestao',   alert: true },
   { to: '/risco',       icon: ShieldAlert,      label: 'Gestão de risco',     section: 'gestao' },
@@ -25,6 +27,7 @@ const navItems = [
   { to: '/5s', icon: ClipboardList, label: 'Gestão 5S', section: 'gestao' },
   { to: '/auditoria', icon: ClipboardCheck, label: 'Auditoria de Processo', section: 'gestao' },
   { to: '/calibracao', icon: Wrench, label: 'Calibração', section: 'gestao' },
+  
 
 ]
 
@@ -153,6 +156,7 @@ function Layout() {
             <Route path="/5s"           element={<Cinco5S />} />
             <Route path="/auditoria" element={<AuditoriaProcesso />} />
             <Route path="/calibracao" element={<Calibracao />} />
+            <Route path="/planejamento" element={<PlanejamentoAnual />} />
           </Routes>
         </main>
       </div>

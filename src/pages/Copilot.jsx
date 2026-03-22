@@ -36,6 +36,20 @@ const responses = {
 'cronograma': 'Cronograma de auditorias Mar/26:\n• Semana 1: 3 realizadas ✅\n• Semana 2: 2 realizadas ✅ | 1 não realizada ⚠️\n• Semana 3: 3 realizadas ✅\n• Semana 4: 4 planejadas | 0 concluídas ainda\nTotal do mês: 8 realizadas de 13 planejadas.',
 'planejamento':'Próximas auditorias planejadas (Semana 4):\n• 24/03 — Produção | Manhã | Igor Bittencourt\n• 25/03 — Manutenção | Tarde | Carlos Mendes\n• 26/03 — Administrativo | Manhã | Ana Ferreira\n• 28/03 — Qualidade | Tarde | Maria Silva',
 'nao realiz': 'Auditoria não realizada — Semana 2:\n• RH | Auditoria de Sistema | 14/03/26 | Ana Ferreira\nMotivo não registrado. Recomendo reagendar para a Semana 4.',
+
+'planejamento': 'Planejamento Anual 2026:\n• Progresso geral: 32%\n• Concluídas: 18 atividades\n• Em andamento: 3\n• Atrasadas: 3\n\nCategorias: Treinamentos (38%), Análise de Material (25%), BPF (44%), Auditoria Interna (33%), Externas (10%).',
+
+'treinamento':  'Treinamentos 2026:\n• Jan/Fev: BPF produção ✅ | HACCP ✅ | Segurança ✅\n• Mar: BPF em andamento\n• Próximos: Mai (HACCP), Ago (BPF), Set (HACCP)\nProgresso: 38%',
+
+'bpf':          'Auditoria de BPF 2026:\n• Jan: Produção ✅ | Fev: Produção ✅\n• Mar: sem auditoria BPF planejada\n• Próximas: Abr (Produção), Jul (Produção), Out (Produção)\nProgresso: 44% — melhor categoria do planejamento.',
+
+'iso':          'Renovação ISO 9001:\n• Prevista para Agosto/2026\n• Responsável: Igor Bittencourt\n• Status: Planejado\nRecomendo iniciar preparação em Junho — 2 meses de antecedência.',
+
+'mapa':         'Auditoria MAPA / Vigilância Sanitária:\n• Prevista para Março/2026\n• Status: Em andamento\n• Responsável: Igor Bittencourt\nAtenção: auditoria do mês atual — verificar documentação.',
+
+'atrasad':      'Atividades atrasadas no planejamento:\n• Treinamento de segurança do trabalho — previsto Jan, não concluído\n• BPF Laboratório — previsto Jan, não concluído\n• Auditoria fornecedor — verificar status\nRecomendo priorizar regularização antes do fechamento do trimestre.',
+
+'progresso':    'Progresso do planejamento 2026 (Mar):\n• Treinamentos: 38% ↑\n• Análise de material: 25%\n• Auditoria BPF: 44% ↑ melhor\n• Auditoria interna: 33%\n• Auditorias externas: 10% (maioria no 2º semestre)\nMédia geral: 32%',
 }
 
 function getResponse(input) {
@@ -54,7 +68,9 @@ const suggestions = [
   'Melhor setor no 5S',
   'Riscos sem responsável',
   'Cronograma de auditorias',
-'Próximas auditorias da semana',
+  'Próximas auditorias da semana',
+  'Progresso do planejamento',
+  'Atividades atrasadas',
 ]
 
 export default function Copilot() {
