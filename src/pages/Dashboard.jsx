@@ -316,7 +316,7 @@ export default function Dashboard() {
       <div style={{ position:'relative', zIndex:1, padding:'28px 24px', maxWidth:1400 }}>
 
         {/* HEADER */}
-        <div style={{ ...cs(0), display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:20, flexWrap:'wrap', gap:12 }}>
+        <div style={{ ...cs(0), display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:20, flexWrap:'wrap', gap:12, position:'relative', zIndex:50 }}>
           <div>
             <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:6 }}>
               <div style={{ width:8, height:8, borderRadius:'50%', background:'#10b981', boxShadow:'0 0 8px #10b981' }}/>

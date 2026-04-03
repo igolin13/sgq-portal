@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { CheckCircle, Clock, AlertCircle, Plus, X, ChevronDown, ChevronUp } from 'lucide-react'
 
 const MESES = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
@@ -198,12 +198,24 @@ function ModalAtividade({ atividade, cat, onSave, onClose }) {
     )
 }
 
+const STORAGE_KEY = 'planejamento_abertos'
+
 export default function PlanejamentoAnual() {
     const [atividades, setAtividades] = useState(atividadesIniciais)
-    const [abertos, setAbertos] = useState(Object.fromEntries(CATEGORIAS.map(c => [c.id, true])))
+    const [abertos, setAbertos] = useState(() => {
+        try {
+            const salvo = localStorage.getItem(STORAGE_KEY)
+            if (salvo) return JSON.parse(salvo)
+        } catch {}
+        return Object.fromEntries(CATEGORIAS.map(c => [c.id, false]))
+    })
     const [itemAtivo, setItemAtivo] = useState(null)
     const [catAtiva, setCatAtiva] = useState(null)
     const [anoVis, setAnoVis] = useState(ANO)
+
+    useEffect(() => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(abertos))
+    }, [abertos])
 
     function toggle(cat) { setAbertos(p => ({ ...p, [cat]: !p[cat] })) }
 

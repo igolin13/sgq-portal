@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Navigate, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, FileText, AlertCircle, ShieldAlert, Truck,
-  Bot, ClipboardList, Wrench, CalendarDays, Star, LogOut, User
+  Bot, ClipboardList, Wrench, CalendarDays, Star, LogOut, User,
+  ChevronDown, ChevronRight, Microscope, BookOpen, FileSearch,
+  BellRing, RefreshCw, ScanSearch, ListChecks
 } from 'lucide-react'
 
 import Login             from './pages/Login'
@@ -19,26 +21,52 @@ import PlanejamentoAnual from './pages/PlanejamentoAnual'
 
 // ── SEÇÕES DO SIDEBAR ─────────────────────────────────────────────
 const navItems = [
-  { to:'/',             icon:LayoutDashboard, label:'Dashboard',          section:'principal' },
-  { to:'/planejamento', icon:CalendarDays,    label:'Planejamento anual', section:'principal' },
-  { to:'/documentos',   icon:FileText,        label:'Documentos',         section:'principal' },
-  { to:'/nc',           icon:AlertCircle,     label:'Não conformidades',  section:'gestao'    },
-  { to:'/risco',        icon:ShieldAlert,     label:'Gestão de risco',    section:'gestao'    },
-  { to:'/fornecedores', icon:Truck,           label:'Fornecedores',       section:'gestao'    },
-  { to:'/5s',           icon:Star,            label:'Gestão 5S',          section:'gestao'    },
-  { to:'/auditoria',    icon:ClipboardList,   label:'Auditoria de processo',section:'gestao'  },
-  { to:'/calibracao',   icon:Wrench,          label:'Calibração',         section:'gestao'    },
-  { to:'/copilot',      icon:Bot,             label:'Copilot SGQ',        section:'ia'        },
+  { to:'/',                        icon:LayoutDashboard, label:'Dashboard',                section:'principal' },
+  { to:'/planejamento',            icon:CalendarDays,    label:'Planejamento anual',        section:'principal' },
+  { to:'/documentos',              icon:FileText,        label:'Documentos',                section:'principal' },
+  { to:'/nc',                      icon:AlertCircle,     label:'Não conformidades',         section:'sgq'       },
+  { to:'/risco',                   icon:ShieldAlert,     label:'Gestão de risco',           section:'sgq'       },
+  { to:'/fornecedores',            icon:Truck,           label:'Fornecedores',              section:'sgq'       },
+  { to:'/5s',                      icon:Star,            label:'Gestão 5S',                 section:'sgq'       },
+  { to:'/auditoria',               icon:ClipboardList,   label:'Auditoria de processo',     section:'sgq'       },
+  { to:'/calibracao',              icon:Wrench,          label:'Calibração',                section:'sgq'       },
+  { to:'/monitoramento-ambiental', icon:Microscope,      label:'Monitoramento ambiental',   section:'sgsa'      },
+  { to:'/ppr',                     icon:BookOpen,        label:'PPR',                       section:'sgsa'      },
+  { to:'/laudo-migracao',          icon:FileSearch,      label:'Laudo de migração',         section:'sgsa'      },
+  { to:'/simulados-emergencia',    icon:BellRing,        label:'Simulados de emergência',   section:'sgsa'      },
+  { to:'/exercicio-recall',        icon:RefreshCw,       label:'Exercício de recall',       section:'sgsa'      },
+  { to:'/selecao',                 icon:ScanSearch,      label:'Seleção',                   section:'cq'        },
+  { to:'/inspecao',               icon:ListChecks,      label:'Inspeção',                  section:'cq'        },
+  { to:'/copilot',                 icon:Bot,             label:'Copilot SGQ',               section:'ia'        },
 ]
 
 const sections = [
-  { id:'principal', label:'Principal'    },
-  { id:'gestao',    label:'Gestão'       },
-  { id:'ia',        label:'Inteligência' },
+  { id:'principal', label:'Principal',   collapsible: false },
+  { id:'sgq',  label:'SGQ',  sub:'Sistema de Gestão da Qualidade',       collapsible: true, cor:'#3b82f6', corBg:'rgba(59,130,246,0.12)'  },
+  { id:'sgsa', label:'SGSA', sub:'Gestão de Segurança de Alimentos',     collapsible: true, cor:'#10b981', corBg:'rgba(16,185,129,0.12)'  },
+  { id:'cq',   label:'CQ',   sub:'Controle de Qualidade',                collapsible: true, cor:'#f59e0b', corBg:'rgba(245,158,11,0.12)'  },
+  { id:'ia',   label:'Inteligência',     collapsible: false },
 ]
+
+// ── PÁGINA PLACEHOLDER ───────────────────────────────────────────
+function EmConstrucao({ titulo }) {
+  return (
+    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'60vh', gap:12, color:'#64748b' }}>
+      <div style={{ fontSize:40 }}>🚧</div>
+      <div style={{ fontSize:20, fontWeight:600, color:'#1e293b' }}>{titulo}</div>
+      <div style={{ fontSize:14 }}>Módulo em desenvolvimento</div>
+    </div>
+  )
+}
 
 // ── PORTAL COM SIDEBAR ────────────────────────────────────────────
 function Portal({ usuario, onLogout }) {
+  const [collapsed, setCollapsed] = useState({ sgq: true, sgsa: true, cq: true })
+
+  function toggleSection(id) {
+    setCollapsed(prev => ({ ...prev, [id]: !prev[id] }))
+  }
+
   return (
     <div style={{ display:'flex', height:'100vh', background:'#C8E3F5', fontFamily:"'DM Sans', sans-serif" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -63,29 +91,117 @@ function Portal({ usuario, onLogout }) {
         </div>
 
         {/* Nav */}
-        <nav style={{ flex:1, padding:'12px 0' }}>
-          {sections.map(sec => (
-            <div key={sec.id}>
-              <div style={{ fontSize:9, fontWeight:600, color:'rgba(255,255,255,0.3)', letterSpacing:2, textTransform:'uppercase', padding:'12px 20px 6px' }}>
-                {sec.label}
-              </div>
-              {navItems.filter(n => n.section === sec.id).map(item => (
-                <NavLink key={item.to} to={item.to} end={item.to === '/'}
-                  style={({ isActive }) => ({
-                    display:'flex', alignItems:'center', gap:10,
-                    padding:'9px 20px', textDecoration:'none',
-                    background: isActive ? 'rgba(255,255,255,0.12)' : 'transparent',
-                    borderRight: isActive ? '2px solid #185FA5' : '2px solid transparent',
-                    color: isActive ? '#fff' : 'rgba(255,255,255,0.55)',
-                    fontSize:13, fontWeight: isActive ? 500 : 400,
-                    transition:'all .15s',
-                  })}>
-                  <item.icon size={15} style={{ flexShrink:0 }}/>
-                  <span>{item.label}</span>
-                </NavLink>
-              ))}
+        <nav style={{ flex:1, padding:'8px 0 12px', display:'flex', flexDirection:'column', gap:0 }}>
+
+          {/* ── PRINCIPAL ─────────────────────── */}
+          <div style={{ padding:'4px 0 2px' }}>
+            <div style={{ fontSize:9, fontWeight:700, color:'rgba(255,255,255,0.22)', letterSpacing:2.5, textTransform:'uppercase', padding:'8px 20px 4px' }}>
+              Principal
             </div>
-          ))}
+            {navItems.filter(n => n.section === 'principal').map(item => (
+              <NavLink key={item.to} to={item.to} end={item.to === '/'}
+                style={({ isActive }) => ({
+                  display:'flex', alignItems:'center', gap:10,
+                  padding:'9px 20px', textDecoration:'none',
+                  background: isActive ? 'rgba(255,255,255,0.1)' : 'transparent',
+                  borderLeft: isActive ? '2px solid #3b82f6' : '2px solid transparent',
+                  color: isActive ? '#fff' : 'rgba(255,255,255,0.55)',
+                  fontSize:14, fontWeight: isActive ? 500 : 400,
+                  transition:'all .15s',
+                })}>
+                <item.icon size={15} style={{ flexShrink:0 }}/>
+                <span>{item.label}</span>
+              </NavLink>
+            ))}
+          </div>
+
+          {/* ── DIVISOR ───────────────────────── */}
+          <div style={{ margin:'10px 16px 10px', display:'flex', alignItems:'center', gap:8 }}>
+            <div style={{ flex:1, height:'0.5px', background:'linear-gradient(to right, rgba(255,255,255,0.06), rgba(255,255,255,0.12), rgba(255,255,255,0.06))' }}/>
+            <span style={{ fontSize:8, fontWeight:700, color:'rgba(255,255,255,0.18)', letterSpacing:2, textTransform:'uppercase', whiteSpace:'nowrap' }}>Sistemas</span>
+            <div style={{ flex:1, height:'0.5px', background:'linear-gradient(to right, rgba(255,255,255,0.06), rgba(255,255,255,0.12), rgba(255,255,255,0.06))' }}/>
+          </div>
+
+          {/* ── BLOCO DOS TRÊS SISTEMAS ───────── */}
+          <div style={{ margin:'0 10px', background:'rgba(0,0,0,0.2)', border:'0.5px solid rgba(255,255,255,0.07)', borderRadius:14, overflow:'hidden' }}>
+            {sections.filter(s => s.cor).map((sec, i) => {
+              const isCollapsed = collapsed[sec.id]
+              const items = navItems.filter(n => n.section === sec.id)
+              return (
+                <div key={sec.id} style={{ borderTop: i > 0 ? '0.5px solid rgba(255,255,255,0.05)' : 'none' }}>
+                  {/* Cabeçalho da seção */}
+                  <div onClick={() => toggleSection(sec.id)}
+                    style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'10px 14px', cursor:'pointer', userSelect:'none', transition:'background .15s',
+                      background: !isCollapsed ? 'rgba(255,255,255,0.03)' : 'transparent' }}
+                    onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,0.04)'}
+                    onMouseLeave={e => e.currentTarget.style.background=!isCollapsed ? 'rgba(255,255,255,0.03)' : 'transparent'}>
+                    <div style={{ display:'flex', alignItems:'center', gap:9 }}>
+                      {/* Badge colorido */}
+                      <div style={{ width:28, height:28, borderRadius:8, background:sec.corBg, border:`1px solid ${sec.cor}30`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+                        <span style={{ fontSize:8, fontWeight:800, color:sec.cor, letterSpacing:0.5 }}>{sec.label}</span>
+                      </div>
+                      <div>
+                        <div style={{ fontSize:11, fontWeight:600, color:'rgba(255,255,255,0.8)', lineHeight:1.2 }}>{sec.sub}</div>
+                        <div style={{ fontSize:9, color:'rgba(255,255,255,0.3)', marginTop:1 }}>{items.length} módulo{items.length !== 1 ? 's' : ''}</div>
+                      </div>
+                    </div>
+                    <div style={{ display:'flex', alignItems:'center', gap:5 }}>
+                      {isCollapsed
+                        ? <ChevronRight size={13} color="rgba(255,255,255,0.25)"/>
+                        : <ChevronDown  size={13} color={sec.cor} style={{ opacity:0.7 }}/>}
+                    </div>
+                  </div>
+
+                  {/* Itens expandidos */}
+                  {!isCollapsed && (
+                    <div style={{ background:'rgba(0,0,0,0.15)', borderTop:`1px solid ${sec.cor}18` }}>
+                      {items.map(item => (
+                        <NavLink key={item.to} to={item.to}
+                          style={({ isActive }) => ({
+                            display:'flex', alignItems:'center', gap:9,
+                            padding:'8px 14px 8px 20px', textDecoration:'none',
+                            background: isActive ? `${sec.cor}15` : 'transparent',
+                            borderLeft: isActive ? `2px solid ${sec.cor}` : '2px solid transparent',
+                            color: isActive ? '#fff' : 'rgba(255,255,255,0.5)',
+                            fontSize:13, fontWeight: isActive ? 500 : 400,
+                            transition:'all .15s',
+                          })}>
+                          <item.icon size={13} style={{ flexShrink:0 }}/>
+                          <span>{item.label}</span>
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+
+          {/* ── DIVISOR ───────────────────────── */}
+          <div style={{ margin:'10px 16px 6px', height:'0.5px', background:'linear-gradient(to right, rgba(255,255,255,0.06), rgba(255,255,255,0.1), rgba(255,255,255,0.06))' }}/>
+
+          {/* ── INTELIGÊNCIA ──────────────────── */}
+          <div>
+            <div style={{ fontSize:9, fontWeight:700, color:'rgba(255,255,255,0.22)', letterSpacing:2.5, textTransform:'uppercase', padding:'4px 20px 4px' }}>
+              Inteligência
+            </div>
+            {navItems.filter(n => n.section === 'ia').map(item => (
+              <NavLink key={item.to} to={item.to}
+                style={({ isActive }) => ({
+                  display:'flex', alignItems:'center', gap:10,
+                  padding:'9px 20px', textDecoration:'none',
+                  background: isActive ? 'rgba(139,92,246,0.15)' : 'transparent',
+                  borderLeft: isActive ? '2px solid #8b5cf6' : '2px solid transparent',
+                  color: isActive ? '#fff' : 'rgba(255,255,255,0.55)',
+                  fontSize:14, fontWeight: isActive ? 500 : 400,
+                  transition:'all .15s',
+                })}>
+                <item.icon size={15} style={{ flexShrink:0 }}/>
+                <span>{item.label}</span>
+              </NavLink>
+            ))}
+          </div>
+
         </nav>
 
         {/* Usuário logado */}
@@ -125,8 +241,15 @@ function Portal({ usuario, onLogout }) {
           <Route path="/5s"           element={<Cinco5S/>}           />
           <Route path="/auditoria"    element={<AuditoriaProcesso/>} />
           <Route path="/calibracao"   element={<Calibracao/>}        />
-          <Route path="/copilot"      element={<Copilot/>}           />
-          <Route path="*"             element={<Navigate to="/" replace/>}/>
+          <Route path="/monitoramento-ambiental" element={<EmConstrucao titulo="Monitoramento ambiental"/>}  />
+          <Route path="/ppr"                     element={<EmConstrucao titulo="PPR"/>}                      />
+          <Route path="/laudo-migracao"           element={<EmConstrucao titulo="Laudo de migração"/>}        />
+          <Route path="/simulados-emergencia"     element={<EmConstrucao titulo="Simulados de emergência"/>}  />
+          <Route path="/exercicio-recall"         element={<EmConstrucao titulo="Exercício de recall"/>}      />
+          <Route path="/selecao"                  element={<EmConstrucao titulo="Seleção"/>}                   />
+          <Route path="/inspecao"                 element={<EmConstrucao titulo="Inspeção"/>}                  />
+          <Route path="/copilot"                  element={<Copilot/>}                                        />
+          <Route path="*"                         element={<Navigate to="/" replace/>}/>
         </Routes>
       </main>
     </div>
