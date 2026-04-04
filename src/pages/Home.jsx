@@ -6,6 +6,8 @@ import {
   ClipboardList, Star, CalendarDays, Bot,
   TrendingUp, CheckCircle, Clock, ArrowUpRight
 } from 'lucide-react'
+import logoEmpresa from '../assets/logo-incoflandres.png'
+
 
 // ── UTILITÁRIOS ───────────────────────────────────────────────────
 function getGreeting() {

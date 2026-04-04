@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, NavLink, Navigate, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
 import {
   LayoutDashboard, FileText, AlertCircle, ShieldAlert, Truck,
   Bot, ClipboardList, Wrench, CalendarDays, Star, LogOut, User,
@@ -17,8 +17,10 @@ import Fornecedores      from './pages/Fornecedores'
 import Copilot           from './pages/Copilot'
 import Cinco5S           from './pages/Cinco5S'
 import AuditoriaProcesso from './pages/AuditoriaProcesso'
-import Calibracao        from './pages/Calibracao'
-import PlanejamentoAnual from './pages/PlanejamentoAnual'
+import Calibracao          from './pages/Calibracao'
+import PlanejamentoAnual   from './pages/PlanejamentoAnual'
+import Selecao             from './pages/Selecao'
+import Inspecao            from './pages/Inspecao'
 
 // ── SEÇÕES DO SIDEBAR ─────────────────────────────────────────────
 const navItems = [
@@ -315,6 +317,7 @@ function Portal({ usuario, onLogout }) {
           <Route path="/laudo-migracao"           element={<EmConstrucao titulo="Laudo de migração"/>}        />
           <Route path="/simulados-emergencia"     element={<EmConstrucao titulo="Simulados de emergência"/>}  />
           <Route path="/exercicio-recall"         element={<EmConstrucao titulo="Exercício de recall"/>}      />
+          <Route path="/controle"                 element={<ControleQualidade/>}                              />
           <Route path="/selecao"                  element={<EmConstrucao titulo="Seleção"/>}                   />
           <Route path="/inspecao"                 element={<EmConstrucao titulo="Inspeção"/>}                  />
           <Route path="/copilot"                  element={<Copilot/>}                                        />
