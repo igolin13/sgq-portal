@@ -317,9 +317,8 @@ function Portal({ usuario, onLogout }) {
           <Route path="/laudo-migracao"           element={<EmConstrucao titulo="Laudo de migração"/>}        />
           <Route path="/simulados-emergencia"     element={<EmConstrucao titulo="Simulados de emergência"/>}  />
           <Route path="/exercicio-recall"         element={<EmConstrucao titulo="Exercício de recall"/>}      />
-          <Route path="/controle"                 element={<ControleQualidade/>}                              />
-          <Route path="/selecao"                  element={<EmConstrucao titulo="Seleção"/>}                   />
-          <Route path="/inspecao"                 element={<EmConstrucao titulo="Inspeção"/>}                  />
+          <Route path="/selecao"  element={<Selecao />} />
+          <Route path="/inspecao" element={<Inspecao />} />                 
           <Route path="/copilot"                  element={<Copilot/>}                                        />
           <Route path="*"                         element={<Navigate to="/" replace/>}/>
         </Routes>
