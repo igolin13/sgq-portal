@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import logoLogin from '../assets/logo-login.png'
 
 // ── CREDENCIAIS FICTÍCIAS (substituir pela API TOTVS depois) ──────
 const USUARIOS_VALIDOS = [
@@ -168,11 +169,15 @@ export default function Login({ onLogin }) {
           {/* Título */}
           <div style={{ ...cs(150), textAlign:'center', marginBottom:36 }}>
             <div style={{ width:64, height:64, borderRadius:18, margin:'0 auto 16px', background:'linear-gradient(135deg,#0F2952 0%,#185FA5 100%)', border:'0.5px solid rgba(56,138,221,0.3)', display:'flex', alignItems:'center', justifyContent:'center', boxShadow:'0 0 24px rgba(24,95,165,0.3), 0 0 0 1px rgba(56,138,221,0.1)', position:'relative' }}>
-              <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-                <path d="M15 3L27 9V21L15 27L3 21V9L15 3Z" stroke="rgba(56,138,221,0.8)" strokeWidth="1.5" fill="rgba(24,95,165,0.3)"/>
-                <path d="M15 8L22 11.5V18.5L15 22L8 18.5V11.5L15 8Z" stroke="rgba(56,138,221,0.6)" strokeWidth="1" fill="rgba(24,95,165,0.2)"/>
-                <circle cx="15" cy="15" r="3" fill="rgba(56,138,221,0.9)"/>
-              </svg>
+              <img
+                src={logoLogin}
+                alt="Logo"
+                style={{
+                  width: 60,
+                  height: 60,
+                  objectFit: 'contain'
+                }}
+              />
             </div>
             <h1 style={{ fontSize:20, fontWeight:700, margin:'0 0 4px', background:'linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.75) 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', letterSpacing:-0.3 }}>
               Sistema de Gestão da Qualidade

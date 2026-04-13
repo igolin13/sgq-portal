@@ -6,7 +6,7 @@ import {
   ClipboardList, Star, CalendarDays, Bot,
   TrendingUp, CheckCircle, Clock, ArrowUpRight
 } from 'lucide-react'
-import logoEmpresa from '../assets/logo-incoflandres.png'
+import fundoHome from '../assets/fundo-home.png'
 
 
 // ── UTILITÁRIOS ───────────────────────────────────────────────────
@@ -90,7 +90,20 @@ export default function Home({ usuario }) {
   const alertasDanger = ALERTAS.filter(a => a.tipo === 'danger').length
 
   return (
-    <div style={{ fontFamily:"'DM Sans',sans-serif", minHeight:'100vh', background:'linear-gradient(150deg,#070d1c 0%,#0b1428 55%,#080f1e 100%)', margin:'-24px', padding:0, color:'#fff', overflowX:'hidden' }}>
+    <div
+  style={{
+    fontFamily: "'DM Sans',sans-serif",
+    minHeight: '100vh',
+    backgroundImage: `url(${fundoHome})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    margin: '-24px',
+    padding: 0,
+    color: '#fff',
+    overflowX: 'hidden'
+  }}
+>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
       {/* Fundo decorativo */}
