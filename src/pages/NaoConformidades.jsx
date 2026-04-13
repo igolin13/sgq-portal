@@ -5,6 +5,7 @@ import {
   TrendingDown, User, Tag, ArrowRight, ChevronDown,
   RefreshCw, ShieldAlert
 } from 'lucide-react'
+import TopBar from '../components/TopBar'
 
 // ─── CONSTANTES ───────────────────────────────────────────────────
 const MAQUINAS      = ['', 'Env 1', 'Env 3', 'Env 5', 'Env 6', 'Lito 2', 'Lito 4', 'Lito 5', 'Lito 6']
@@ -668,9 +669,10 @@ export default function NaoConformidades() {
   const COLUNAS = ['RNC', 'Cliente', 'Defeito / Responsável', 'Tipo', 'Área', 'Abertura', 'Prazo', 'Situação', '']
 
   return (
-    <div style={{ fontFamily:"'DM Sans',sans-serif", minHeight:'100vh', background:'#C8E3F5', margin:'-24px', padding:'28px 28px 48px', color:'#1e293b' }}>
+    <div style={{ fontFamily:"'DM Sans',sans-serif", minHeight:'100vh', background:'#C8E3F5', margin:'-24px', color:'#1e293b' }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-
+      <TopBar system="SGQ" moduleName="Módulo de Ocorrências" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
+      <div style={{ padding:'28px 28px 48px' }}>
       {/* ── CABEÇALHO ── */}
       <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:28 }}>
         <div>
@@ -901,6 +903,7 @@ export default function NaoConformidades() {
           onClose={()=>{ setNcAtiva(null); setNovaNC(false) }}
         />
       )}
+      </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { AlertTriangle, Send } from 'lucide-react'
 import { useState } from 'react'
+import TopBar from '../components/TopBar'
 
 const riscos = [
   { codigo: 'R-01', desc: 'Falha no sistema TOTVS',          area: 'TI',         nivel: 'critico', responsavel: '—',          status: 'sem_resp' },
@@ -35,6 +36,8 @@ export default function GestaoRisco() {
   const filtered = riscos.filter(r => filtro === 'todos' || r.nivel === filtro)
 
   return (
+    <>
+      <TopBar system="SGQ" moduleName="Gestão de Risco" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
@@ -111,5 +114,6 @@ export default function GestaoRisco() {
         </div>
       </div>
     </div>
+    </>
   )
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ClipboardList, Package, ArrowLeft, Plus, Minus, Download } from 'lucide-react'
+import TopBar from '../components/TopBar'
 import ApontamentoSelecao from './controle/formularios/ApontamentoSelecao'
 import { exportarParaCSV } from '../services/sharepointService'
 
@@ -309,6 +310,8 @@ export default function Selecao() {
   ]
 
   return (
+    <>
+      <TopBar system="CQ" moduleName="Controle de Qualidade" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
     <div style={{ display:'flex', flexDirection:'column', gap:20, fontFamily:"'DM Sans', sans-serif" }}>
 
       {/* Header */}
@@ -367,5 +370,6 @@ export default function Selecao() {
         @keyframes fadeIn { from { opacity:0; transform:translateY(6px) } to { opacity:1; transform:translateY(0) } }
       `}</style>
     </div>
+    </>
   )
 }

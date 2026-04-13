@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ListChecks, ArrowLeft, Download } from 'lucide-react'
+import TopBar from '../components/TopBar'
 import InspecaoLitografia     from './controle/formularios/InspecaoLitografia'
 import InspecaoEnvernizadeira from './controle/formularios/InspecaoEnvernizadeira'
 import LiberacaoCarga         from './controle/formularios/LiberacaoCarga'
@@ -160,6 +161,8 @@ export default function Inspecao() {
 
   // ── Formulário + painel lateral ─────────────────────────────────────────
   return (
+    <>
+      <TopBar system="CQ" moduleName="Controle de Qualidade" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
     <div style={{ display:'flex', flexDirection:'column', gap:16, fontFamily:"'DM Sans', sans-serif" }}>
 
       {/* Breadcrumb */}
@@ -286,5 +289,6 @@ export default function Inspecao() {
         )}
       </div>
     </div>
+    </>
   )
 }

@@ -1,4 +1,5 @@
 import { RefreshCw } from 'lucide-react'
+import TopBar from '../components/TopBar'
 
 const fornecedores = [
   { codigo: 'F-001', nome: 'Aço Brasil Ltda',       categoria: 'Matéria-prima', avaliacao: 'Aprovado',  status: 'ativo' },
@@ -16,6 +17,8 @@ const statusStyle = {
 
 export function Fornecedores() {
   return (
+    <>
+      <TopBar system="SGQ" moduleName="Fornecedores" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <span className="text-sm text-gray-500">{fornecedores.length} fornecedores cadastrados</span>
@@ -53,6 +56,7 @@ export function Fornecedores() {
         </table>
       </div>
     </div>
+    </>
   )
 }
 

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronUp, Eye, Download, Search, Plus } from 'lucide-react'
+import TopBar from '../components/TopBar'
 
 const tiposDoc = [
   {
@@ -73,6 +74,8 @@ export default function Documentos() {
   }
 
   return (
+    <>
+      <TopBar system="SGQ" moduleName="Documentos" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
     <div className="space-y-3">
       <div className="flex items-center gap-3">
         <div className="flex-1 relative">
@@ -210,5 +213,6 @@ export default function Documentos() {
         </div>
       )}
     </div>
+    </>
   )
 }

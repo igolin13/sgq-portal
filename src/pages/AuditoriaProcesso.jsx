@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Plus, Search, Eye, X, CheckCircle, Clock, AlertCircle, Calendar, ChevronLeft, ChevronRight, Paperclip, ClipboardCheck } from 'lucide-react'
+import TopBar from '../components/TopBar'
 
 const SETORES = ['Produção', 'Qualidade', 'Logística', 'Manutenção', 'RH', 'Administrativo']
 const TURNOS  = ['Manhã', 'Tarde', 'Noite']
@@ -304,6 +305,8 @@ export default function AuditoriaProcesso() {
   if (novaAuditoria) return <NovaAuditoriaForm onSave={adicionarAuditoria} onClose={() => setNovaAuditoria(false)} />
 
   return (
+    <>
+      <TopBar system="SGQ" moduleName="Auditoria de Processo" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
     <div className="space-y-4">
       <div className="grid grid-cols-3 gap-3">
         <div className="bg-white rounded-xl border border-gray-100 p-4 flex items-center gap-3">
@@ -501,5 +504,6 @@ export default function AuditoriaProcesso() {
         </div>
       )}
     </div>
+    </>
   )
 }

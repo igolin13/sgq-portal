@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import TopBar from '../components/TopBar'
 import { Plus, ChevronDown, ChevronUp, ClipboardList } from 'lucide-react'
 import { RadarChart, Radar, PolarGrid, PolarAngleAxis, ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from 'recharts'
 
@@ -138,6 +139,8 @@ export default function Cinco5S() {
   ]
 
   return (
+    <>
+      <TopBar system="SGQ" moduleName="Gestão 5S" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex gap-1 bg-white border border-gray-100 rounded-lg p-1">
@@ -519,5 +522,6 @@ export default function Cinco5S() {
         </div>
       )}
     </div>
+    </>
   )
 }

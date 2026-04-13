@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { CheckCircle, Clock, AlertCircle, Plus, X, ChevronDown, ChevronUp } from 'lucide-react'
+import TopBar from '../components/TopBar'
 
 const MESES = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
 const ANO = 2026
@@ -246,6 +247,8 @@ export default function PlanejamentoAnual() {
     )
 
     return (
+        <>
+          <TopBar system="SGQ" moduleName="Planejamento Anual" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
         <div className="space-y-4">
             <div className="grid grid-cols-4 gap-3">
                 <div className="bg-white rounded-xl border border-gray-100 p-4">
@@ -375,5 +378,6 @@ export default function PlanejamentoAnual() {
                 <span className="text-xs text-gray-400 ml-auto">Clique em qualquer célula para editar · {ANO}</span>
             </div>
         </div>
+        </>
     )
 }

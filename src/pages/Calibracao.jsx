@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Search, Plus, Eye, X, CheckCircle, AlertCircle, Clock, Wrench, ChevronDown, ChevronUp, Paperclip } from 'lucide-react'
+import TopBar from '../components/TopBar'
 
 const hoje = new Date('2026-03-22')
 
@@ -294,6 +295,8 @@ export default function Calibracao() {
   if (itemAtivo) return <FormularioCalib item={itemAtivo} onSave={salvar} onClose={() => setItemAtivo(null)} />
 
   return (
+    <>
+      <TopBar system="SGQ" moduleName="Calibração" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
     <div className="space-y-4">
       <div className="grid grid-cols-4 gap-3">
         <div className="bg-white rounded-xl border border-gray-100 p-4 flex items-center gap-3">
@@ -467,5 +470,6 @@ export default function Calibracao() {
         })}
       </div>
     </div>
+    </>
   )
 }
