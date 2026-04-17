@@ -76,7 +76,7 @@ export default function Documentos() {
   return (
     <>
       <TopBar system="SGQ" moduleName="Documentos" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
-    <div className="space-y-3">
+    <div className="space-y-3" style={{ paddingTop: 24 }}>
       <div className="flex items-center gap-3">
         <div className="flex-1 relative">
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />

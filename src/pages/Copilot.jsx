@@ -96,7 +96,7 @@ export default function Copilot() {
   return (
     <>
       <TopBar system="SGQ" moduleName="Copilot IA" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
-    <div className="flex flex-col bg-white rounded-xl border border-gray-100 overflow-hidden" style={{ height: 'calc(100vh - 120px)' }}>
+    <div className="flex flex-col bg-white rounded-xl border border-gray-100 overflow-hidden" style={{ height: 'calc(100vh - 120px)', marginTop: 24 }}>
       <div className="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
         <div className="w-8 h-8 rounded-full bg-[#185FA5] flex items-center justify-center">
           <Bot size={16} className="text-white" />

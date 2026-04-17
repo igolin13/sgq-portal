@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ClipboardList, Package, ArrowLeft, Plus, Minus, Download } from 'lucide-react'
 import TopBar from '../components/TopBar'
+import { useTheme } from '../hooks/useTheme'
 import ApontamentoSelecao from './controle/formularios/ApontamentoSelecao'
 import { exportarParaCSV } from '../services/sharepointService'
 
@@ -100,16 +101,16 @@ function Estoque() {
         </button>
       </div>
 
-      <div style={{ background:'#fff', borderRadius:14, overflow:'hidden', boxShadow:'0 1px 4px rgba(0,0,0,0.07)' }}>
+      <div style={{ background:t.card, borderRadius:14, overflow:'hidden', boxShadow:'0 1px 4px rgba(0,0,0,0.07)' }}>
         <div style={{ padding:'13px 20px', borderBottom:'1px solid #f3f4f6', display:'flex', alignItems:'center', gap:8 }}>
           <Package size={15} color={COR}/>
-          <span style={{ fontSize:14, fontWeight:700, color:'#1f2937' }}>Itens em estoque</span>
+          <span style={{ fontSize:14, fontWeight:700, color:t.text }}>Itens em estoque</span>
         </div>
         <table style={{ width:'100%', borderCollapse:'collapse' }}>
           <thead>
             <tr style={{ background:'#f9fafb' }}>
               {['Item','Qtd atual','Unidade','Mínimo','Status'].map(h => (
-                <th key={h} style={{ padding:'10px 16px', textAlign:'left', fontSize:11, fontWeight:700, color:'#6b7280', textTransform:'uppercase', letterSpacing:0.5 }}>{h}</th>
+                <th key={h} style={{ padding:'10px 16px', textAlign:'left', fontSize:11, fontWeight:700, color:t.muted, textTransform:'uppercase', letterSpacing:0.5 }}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -118,10 +119,10 @@ function Estoque() {
               const s = statusEstoque(e.qtd, e.minimo)
               return (
                 <tr key={e.id} style={{ borderTop: i ? '1px solid #f3f4f6' : 'none' }}>
-                  <td style={{ padding:'12px 16px', fontSize:14, color:'#374151', fontWeight:500 }}>{e.item}</td>
+                  <td style={{ padding:'12px 16px', fontSize:14, color:t.text3, fontWeight:500 }}>{e.item}</td>
                   <td style={{ padding:'12px 16px', fontSize:14, fontWeight:700, color: e.qtd <= e.minimo ? '#dc2626' : '#1f2937' }}>{e.qtd.toLocaleString('pt-BR')}</td>
-                  <td style={{ padding:'12px 16px', fontSize:13, color:'#6b7280' }}>{e.unidade}</td>
-                  <td style={{ padding:'12px 16px', fontSize:13, color:'#6b7280' }}>{e.minimo}</td>
+                  <td style={{ padding:'12px 16px', fontSize:13, color:t.muted }}>{e.unidade}</td>
+                  <td style={{ padding:'12px 16px', fontSize:13, color:t.muted }}>{e.minimo}</td>
                   <td style={{ padding:'12px 16px' }}>
                     <span style={{ padding:'4px 12px', borderRadius:20, fontSize:12, fontWeight:700, color:s.cor, background:s.bg, border:`1px solid ${s.border}` }}>{s.label}</span>
                   </td>
@@ -132,17 +133,17 @@ function Estoque() {
         </table>
       </div>
 
-      <div style={{ background:'#fff', borderRadius:14, overflow:'hidden', boxShadow:'0 1px 4px rgba(0,0,0,0.07)' }}>
+      <div style={{ background:t.card, borderRadius:14, overflow:'hidden', boxShadow:'0 1px 4px rgba(0,0,0,0.07)' }}>
         <div style={{ padding:'13px 20px', borderBottom:'1px solid #f3f4f6' }}>
-          <span style={{ fontSize:14, fontWeight:700, color:'#1f2937' }}>Movimentações recentes</span>
+          <span style={{ fontSize:14, fontWeight:700, color:t.text }}>Movimentações recentes</span>
         </div>
         {movs.map((m, i) => (
           <div key={m.id} style={{ padding:'12px 20px', borderTop: i ? '1px solid #f9fafb' : 'none', display:'flex', alignItems:'center', gap:14 }}>
             <span style={{ width:64, fontSize:12, fontWeight:700, color: m.tipo==='Entrada'?'#16a34a':'#dc2626', background: m.tipo==='Entrada'?'#f0fdf4':'#fff5f5', padding:'3px 8px', borderRadius:6, textAlign:'center' }}>{m.tipo}</span>
-            <span style={{ fontSize:13, color:'#374151', flex:1 }}>{m.item}</span>
-            <span style={{ fontSize:13, fontWeight:600, color:'#374151' }}>{m.qtd} un</span>
-            <span style={{ fontSize:12, color:'#9ca3af' }}>{m.data}</span>
-            <span style={{ fontSize:12, color:'#9ca3af' }}>{m.responsavel}</span>
+            <span style={{ fontSize:13, color:t.text3, flex:1 }}>{m.item}</span>
+            <span style={{ fontSize:13, fontWeight:600, color:t.text3 }}>{m.qtd} un</span>
+            <span style={{ fontSize:12, color:t.faint }}>{m.data}</span>
+            <span style={{ fontSize:12, color:t.faint }}>{m.responsavel}</span>
           </div>
         ))}
       </div>
@@ -150,8 +151,8 @@ function Estoque() {
       {/* Modal movimentação */}
       {modalMov && (
         <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.45)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:999, padding:16 }}>
-          <div style={{ background:'#fff', borderRadius:16, padding:28, width:'100%', maxWidth:440, display:'flex', flexDirection:'column', gap:16 }}>
-            <div style={{ fontSize:17, fontWeight:700, color:'#1f2937' }}>
+          <div style={{ background:t.card, borderRadius:16, padding:28, width:'100%', maxWidth:440, display:'flex', flexDirection:'column', gap:16 }}>
+            <div style={{ fontSize:17, fontWeight:700, color:t.text }}>
               {modalMov === 'entrada' ? '📦 Entrada de material' : '📤 Saída de material'}
             </div>
             {[
@@ -165,17 +166,17 @@ function Estoque() {
                 <div style={{ fontSize:12, fontWeight:600, color:'#4b5563', marginBottom:5 }}>{label}</div>
                 {type === 'select'
                   ? <select value={formMov[key]} onChange={e => setFormMov(p=>({...p,[key]:e.target.value}))}
-                      style={{ width:'100%', padding:'10px 12px', borderRadius:8, fontSize:14, border:'1.5px solid #d1d5db', background:'#fff', outline:'none', cursor:'pointer' }}>
+                      style={{ width:'100%', padding:'10px 12px', borderRadius:8, fontSize:14, border:'1.5px solid #d1d5db', background:t.card, outline:'none', cursor:'pointer' }}>
                       <option value="">Selecione...</option>
                       {estoque.map(e => <option key={e.id} value={e.item}>{e.item}</option>)}
                     </select>
                   : <input type={type} value={formMov[key]} onChange={e => setFormMov(p=>({...p,[key]:e.target.value}))}
-                      style={{ width:'100%', padding:'10px 12px', borderRadius:8, fontSize:14, border:'1.5px solid #d1d5db', background:'#fff', outline:'none', boxSizing:'border-box' }}/>
+                      style={{ width:'100%', padding:'10px 12px', borderRadius:8, fontSize:14, border:'1.5px solid #d1d5db', background:t.card, outline:'none', boxSizing:'border-box' }}/>
                 }
               </div>
             ))}
             <div style={{ display:'flex', gap:10, paddingTop:4 }}>
-              <button onClick={() => setModalMov(null)} style={{ flex:1, padding:'12px 0', borderRadius:9, background:'#f3f4f6', border:'1px solid #e5e7eb', color:'#6b7280', fontSize:14, fontWeight:600, cursor:'pointer' }}>
+              <button onClick={() => setModalMov(null)} style={{ flex:1, padding:'12px 0', borderRadius:9, background:'#f3f4f6', border:`1px solid ${t.border}`, color:t.muted, fontSize:14, fontWeight:600, cursor:'pointer' }}>
                 Cancelar
               </button>
               <button onClick={confirmarMov}
@@ -221,13 +222,13 @@ function ApontamentoView() {
         {aba === 'form' && <ApontamentoSelecao onSalvo={onSalvo}/>}
 
         {aba === 'historico' && (
-          <div style={{ background:'#fff', borderRadius:16, padding:22, display:'flex', flexDirection:'column', gap:14 }}>
+          <div style={{ background:t.card, borderRadius:16, padding:22, display:'flex', flexDirection:'column', gap:14 }}>
             <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:10 }}>
-              <span style={{ fontSize:15, fontWeight:700, color:'#1f2937' }}>Histórico de apontamentos</span>
+              <span style={{ fontSize:15, fontWeight:700, color:t.text }}>Histórico de apontamentos</span>
               <div style={{ display:'flex', gap:10, alignItems:'center', flexWrap:'wrap' }}>
                 <input type="date" value={filtro.inicio} onChange={e => setFiltro(p=>({...p,inicio:e.target.value}))}
                   style={{ padding:'7px 10px', borderRadius:7, border:'1.5px solid #d1d5db', fontSize:13, outline:'none' }}/>
-                <span style={{ color:'#9ca3af', fontSize:13 }}>até</span>
+                <span style={{ color:t.faint, fontSize:13 }}>até</span>
                 <input type="date" value={filtro.fim} onChange={e => setFiltro(p=>({...p,fim:e.target.value}))}
                   style={{ padding:'7px 10px', borderRadius:7, border:'1.5px solid #d1d5db', fontSize:13, outline:'none' }}/>
                 <button onClick={() => exportarDual(historico, filtro.inicio, filtro.fim)}
@@ -241,25 +242,25 @@ function ApontamentoView() {
                 <thead>
                   <tr style={{ background:'#f9fafb' }}>
                     {['Data','Tipo','Selecionadora','Linha','OP','Fardo','Boas','Perda','Total','Defeitos'].map(h => (
-                      <th key={h} style={{ padding:'9px 12px', textAlign:'left', fontSize:11, fontWeight:700, color:'#6b7280', textTransform:'uppercase', letterSpacing:0.4, whiteSpace:'nowrap' }}>{h}</th>
+                      <th key={h} style={{ padding:'9px 12px', textAlign:'left', fontSize:11, fontWeight:700, color:t.muted, textTransform:'uppercase', letterSpacing:0.4, whiteSpace:'nowrap' }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {historico.map((r, i) => (
                     <tr key={i} style={{ borderTop: i ? '1px solid #f3f4f6' : 'none' }}>
-                      <td style={{ padding:'10px 12px', color:'#374151', whiteSpace:'nowrap' }}>{r.data}</td>
+                      <td style={{ padding:'10px 12px', color:t.text3, whiteSpace:'nowrap' }}>{r.data}</td>
                       <td style={{ padding:'10px 12px' }}>
                         <span style={{ padding:'3px 8px', borderRadius:5, fontSize:11, fontWeight:600, background:'#fffbeb', color:'#92400e' }}>{r.tipo}</span>
                       </td>
-                      <td style={{ padding:'10px 12px', color:'#374151' }}>{r.selecionadora}</td>
-                      <td style={{ padding:'10px 12px', color:'#374151' }}>{r.maquina}</td>
-                      <td style={{ padding:'10px 12px', color:'#6b7280', fontFamily:'monospace', fontSize:12 }}>{r.op}</td>
-                      <td style={{ padding:'10px 12px', color:'#374151', textAlign:'center' }}>{r.fardo}</td>
+                      <td style={{ padding:'10px 12px', color:t.text3 }}>{r.selecionadora}</td>
+                      <td style={{ padding:'10px 12px', color:t.text3 }}>{r.maquina}</td>
+                      <td style={{ padding:'10px 12px', color:t.muted, fontFamily:'monospace', fontSize:12 }}>{r.op}</td>
+                      <td style={{ padding:'10px 12px', color:t.text3, textAlign:'center' }}>{r.fardo}</td>
                       <td style={{ padding:'10px 12px', color:'#16a34a', fontWeight:600 }}>{(r.folhasBoas||0).toLocaleString('pt-BR')}</td>
                       <td style={{ padding:'10px 12px', color:'#dc2626', fontWeight:600 }}>{(r.folhasPerda||0).toLocaleString('pt-BR')}</td>
-                      <td style={{ padding:'10px 12px', color:'#1f2937', fontWeight:700 }}>{(r.total||0).toLocaleString('pt-BR')}</td>
-                      <td style={{ padding:'10px 12px', color:'#6b7280', fontSize:12 }}>
+                      <td style={{ padding:'10px 12px', color:t.text, fontWeight:700 }}>{(r.total||0).toLocaleString('pt-BR')}</td>
+                      <td style={{ padding:'10px 12px', color:t.muted, fontSize:12 }}>
                         {r.defeitos?.length ? `${r.defeitos.length} tipo(s)` : '—'}
                       </td>
                     </tr>
@@ -273,18 +274,18 @@ function ApontamentoView() {
 
       {/* Painel lateral — últimos 5 */}
       {aba === 'form' && (
-        <div style={{ background:'#fff', borderRadius:16, padding:18, display:'flex', flexDirection:'column', gap:10, position:'sticky', top:0 }}>
+        <div style={{ background:t.card, borderRadius:16, padding:18, display:'flex', flexDirection:'column', gap:10, position:'sticky', top:0 }}>
           <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:4 }}>
             <div style={{ width:8, height:8, borderRadius:'50%', background:COR }}/>
-            <span style={{ fontSize:13, fontWeight:700, color:'#374151' }}>Últimos 5 apontamentos</span>
+            <span style={{ fontSize:13, fontWeight:700, color:t.text3 }}>Últimos 5 apontamentos</span>
           </div>
           {historico.slice(0, 5).map((r, i) => (
             <div key={i} style={{ padding:'11px 13px', borderRadius:10, background:'#f9fafb', border:'1px solid #f3f4f6', display:'flex', flexDirection:'column', gap:4 }}>
               <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-                <span style={{ fontSize:11, color:'#6b7280' }}>{r.data}</span>
+                <span style={{ fontSize:11, color:t.muted }}>{r.data}</span>
                 <span style={{ fontSize:11, fontWeight:700, color:'#92400e', background:'#fffbeb', padding:'2px 7px', borderRadius:5 }}>{r.tipo}</span>
               </div>
-              <div style={{ fontSize:13, fontWeight:500, color:'#374151' }}>{r.selecionadora} · {r.maquina}</div>
+              <div style={{ fontSize:13, fontWeight:500, color:t.text3 }}>{r.selecionadora} · {r.maquina}</div>
               <div style={{ display:'flex', gap:10 }}>
                 <span style={{ fontSize:11, color:'#16a34a', fontWeight:600 }}>✓ {(r.folhasBoas||0).toLocaleString('pt-BR')} boas</span>
                 <span style={{ fontSize:11, color:'#dc2626', fontWeight:600 }}>✗ {(r.folhasPerda||0).toLocaleString('pt-BR')} perda</span>
@@ -302,7 +303,21 @@ const COR_DK = '#92400e'
 const COR_BG = '#fffbeb'
 
 export default function Selecao() {
+  const { dark } = useTheme()
   const [vista, setVista] = useState(null) // null | 'apontamento' | 'estoque'
+
+  // Tokens de tema
+  const t = dark ? {
+    card: '#132030', surface: '#0f1c2a', text: '#cce0f0', text3: '#b0ccdf',
+    muted: '#6a8a9f', faint: '#4e7090',
+    border: 'rgba(255,255,255,0.10)', border3: 'rgba(255,255,255,0.12)',
+    input: '#0f1c2a',
+  } : {
+    card: '#ffffff', surface: '#f3f4f6', text: '#1f2937', text3: '#374151',
+    muted: '#6b7280', faint: '#9ca3af',
+    border: '#e5e7eb', border3: '#d1d5db',
+    input: '#ffffff',
+  }
 
   const botoes = [
     { key:'apontamento', emoji:'🗂', titulo:'Apontamento', sub:'Registrar seleção de folhas', cor:'#f59e0b', corBg:'#fffbeb', corBorder:'#fde68a' },
@@ -312,7 +327,7 @@ export default function Selecao() {
   return (
     <>
       <TopBar system="CQ" moduleName="Controle de Qualidade" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
-    <div style={{ display:'flex', flexDirection:'column', gap:20, fontFamily:"'DM Sans', sans-serif" }}>
+    <div style={{ display:'flex', flexDirection:'column', gap:20, fontFamily:"'DM Sans', sans-serif", paddingTop: 24 }}>
 
       {/* Header */}
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:12 }}>
@@ -321,11 +336,11 @@ export default function Selecao() {
             <ClipboardList size={26} color="#fff"/>
           </div>
           <div>
-            <div style={{ fontSize:22, fontWeight:800, color:'#1f2937', lineHeight:1.2 }}>Seleção</div>
-            <div style={{ fontSize:13, color:'#9ca3af', marginTop:2 }}>Apontamento · Estoque</div>
+            <div style={{ fontSize:22, fontWeight:800, color:t.text, lineHeight:1.2 }}>Seleção</div>
+            <div style={{ fontSize:13, color:t.faint, marginTop:2 }}>Apontamento · Estoque</div>
           </div>
         </div>
-        <div style={{ padding:'6px 16px', borderRadius:20, background:COR_BG, border:'1.5px solid #fde68a', fontSize:12, fontWeight:700, color:COR_DK, letterSpacing:0.5 }}>
+        <div style={{ padding:'6px 16px', borderRadius:20, background: dark ? 'rgba(245,158,11,0.15)' : COR_BG, border: dark ? '1.5px solid rgba(245,158,11,0.3)' : '1.5px solid #fde68a', fontSize:12, fontWeight:700, color: dark ? '#fbbf24' : COR_DK, letterSpacing:0.5 }}>
           CQ — Seleção
         </div>
       </div>
@@ -335,13 +350,13 @@ export default function Selecao() {
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:24, maxWidth:600 }}>
           {botoes.map(b => (
             <button key={b.key} onClick={() => setVista(b.key)}
-              style={{ padding:'36px 28px', borderRadius:20, border:`2px solid ${b.corBorder}`, background:b.corBg, cursor:'pointer', textAlign:'left', transition:'all .2s', display:'flex', flexDirection:'column', gap:16 }}
+              style={{ padding:'36px 28px', borderRadius:20, border:`2px solid ${dark ? b.cor+'40' : b.corBorder}`, background: dark ? t.card : b.corBg, cursor:'pointer', textAlign:'left', transition:'all .2s', display:'flex', flexDirection:'column', gap:16 }}
               onMouseEnter={e => { e.currentTarget.style.transform='translateY(-3px)'; e.currentTarget.style.boxShadow=`0 8px 24px ${b.cor}25` }}
               onMouseLeave={e => { e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='none' }}>
               <div style={{ fontSize:48, lineHeight:1 }}>{b.emoji}</div>
               <div>
-                <div style={{ fontSize:18, fontWeight:700, color:'#1f2937', marginBottom:4 }}>{b.titulo}</div>
-                <div style={{ fontSize:13, color:'#6b7280' }}>{b.sub}</div>
+                <div style={{ fontSize:18, fontWeight:700, color:t.text, marginBottom:4 }}>{b.titulo}</div>
+                <div style={{ fontSize:13, color:t.muted }}>{b.sub}</div>
               </div>
               <div style={{ fontSize:13, fontWeight:600, color:b.cor, display:'flex', alignItems:'center', gap:6 }}>
                 Abrir <span>→</span>
@@ -352,11 +367,11 @@ export default function Selecao() {
       ) : (
         <div style={{ display:'flex', alignItems:'center', gap:10 }}>
           <button onClick={() => setVista(null)}
-            style={{ display:'flex', alignItems:'center', gap:6, padding:'8px 14px', borderRadius:9, background:'#fff', border:'1px solid #e5e7eb', color:'#374151', fontSize:13, fontWeight:500, cursor:'pointer' }}>
+            style={{ display:'flex', alignItems:'center', gap:6, padding:'8px 14px', borderRadius:9, background:t.card, border:`1px solid ${t.border}`, color:t.text3, fontSize:13, fontWeight:500, cursor:'pointer' }}>
             <ArrowLeft size={14}/> Voltar
           </button>
-          <span style={{ fontSize:14, color:'#9ca3af' }}>Seleção /</span>
-          <span style={{ fontSize:14, fontWeight:600, color:'#374151' }}>
+          <span style={{ fontSize:14, color:t.faint }}>Seleção /</span>
+          <span style={{ fontSize:14, fontWeight:600, color:t.text3 }}>
             {botoes.find(b => b.key === vista)?.titulo}
           </span>
         </div>

@@ -249,7 +249,7 @@ export default function PlanejamentoAnual() {
     return (
         <>
           <TopBar system="SGQ" moduleName="Planejamento Anual" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
-        <div className="space-y-4">
+        <div className="space-y-4" style={{ paddingTop: 24 }}>
             <div className="grid grid-cols-4 gap-3">
                 <div className="bg-white rounded-xl border border-gray-100 p-4">
                     <p className="text-xs text-gray-400 mb-1">Progresso geral</p>

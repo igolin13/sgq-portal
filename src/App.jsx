@@ -98,7 +98,7 @@ function Portal({ usuario, onLogout }) {
   })
 
   return (
-    <div style={{ display:'flex', height:'100vh', background:'#C8E3F5', fontFamily:"'DM Sans', sans-serif" }}>
+    <div className="sgq-portal" style={{ display:'flex', height:'100vh', fontFamily:"'DM Sans', sans-serif" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
       {/* SIDEBAR */}

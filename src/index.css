@@ -12,6 +12,7 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: #C8E3F5;
   color: #1a1a2e;
+  transition: background 0.35s, color 0.35s;
 }
 
 ::-webkit-scrollbar {
@@ -24,3 +25,224 @@ body {
   background: #c1c9d4;
   border-radius: 3px;
 }
+
+/* ══════════════════════════════════════════════
+   CSS VARIABLES — tema claro (:root) + escuro (.dark)
+   ══════════════════════════════════════════════ */
+:root {
+  /* Fundos de card — padrão NaoConformidades (opacidade rgba) */
+  --sgq-card-75: rgba(255,255,255,0.75);
+  --sgq-card-78: rgba(255,255,255,0.78);
+  --sgq-card-65: rgba(255,255,255,0.65);
+  /* Superfícies sutis */
+  --sgq-surface-04: rgba(30,41,59,0.04);
+  --sgq-surface-06: rgba(30,41,59,0.06);
+  /* Texto principal — padrão NaoConformidades */
+  --sgq-text-main: #1e293b;
+  --sgq-text-334:  #334155;
+  --sgq-text-p75:  rgba(30,41,59,0.75);
+  --sgq-text-p60:  rgba(30,41,59,0.60);
+  --sgq-text-p55:  rgba(30,41,59,0.55);
+  --sgq-text-p50:  rgba(30,41,59,0.50);
+  --sgq-text-p45:  rgba(30,41,59,0.45);
+  --sgq-text-p40:  rgba(30,41,59,0.40);
+  --sgq-text-p35:  rgba(30,41,59,0.35);
+  --sgq-text-p30:  rgba(30,41,59,0.30);
+  --sgq-text-p25:  rgba(30,41,59,0.25);
+  /* Bordas — padrão NaoConformidades */
+  --sgq-border-13: rgba(30,41,59,0.13);
+  --sgq-border-12: rgba(30,41,59,0.12);
+  --sgq-border-10: rgba(30,41,59,0.10);
+  --sgq-border-08: rgba(30,41,59,0.08);
+  --sgq-border-07: rgba(30,41,59,0.07);
+
+  /* Fundos de card — padrão Inspecao/Selecao (hex) */
+  --c-card:     #ffffff;
+  --c-surface2: #f3f4f6;
+  --c-surface3: #f9fafb;
+  /* Texto — padrão Inspecao/Selecao */
+  --c-text:    #1f2937;
+  --c-text3:   #374151;
+  --c-muted2:  #6b7280;
+  --c-faint2:  #9ca3af;
+  /* Bordas — padrão Inspecao/Selecao */
+  --c-border2: #e5e7eb;
+  --c-border3: #d1d5db;
+  --c-border4: #f3f4f6;
+  /* Input */
+  --c-input:   #ffffff;
+}
+
+.dark {
+  /* Fundos de card escuro */
+  --sgq-card-75: rgba(19,32,48,0.92);
+  --sgq-card-78: rgba(19,32,48,0.95);
+  --sgq-card-65: rgba(15,28,42,0.90);
+  /* Superfícies no escuro */
+  --sgq-surface-04: rgba(255,255,255,0.04);
+  --sgq-surface-06: rgba(255,255,255,0.05);
+  /* Texto claro */
+  --sgq-text-main: #cce0f0;
+  --sgq-text-334:  #a0c0d8;
+  --sgq-text-p75:  rgba(204,224,240,0.75);
+  --sgq-text-p60:  rgba(204,224,240,0.60);
+  --sgq-text-p55:  rgba(204,224,240,0.55);
+  --sgq-text-p50:  rgba(204,224,240,0.50);
+  --sgq-text-p45:  rgba(204,224,240,0.45);
+  --sgq-text-p40:  rgba(204,224,240,0.40);
+  --sgq-text-p35:  rgba(204,224,240,0.35);
+  --sgq-text-p30:  rgba(204,224,240,0.30);
+  --sgq-text-p25:  rgba(204,224,240,0.25);
+  /* Bordas suaves */
+  --sgq-border-13: rgba(255,255,255,0.11);
+  --sgq-border-12: rgba(255,255,255,0.10);
+  --sgq-border-10: rgba(255,255,255,0.08);
+  --sgq-border-08: rgba(255,255,255,0.07);
+  --sgq-border-07: rgba(255,255,255,0.06);
+
+  /* Card hex escuro */
+  --c-card:     #132030;
+  --c-surface2: #0f1c2a;
+  --c-surface3: #0c1820;
+  /* Texto claro */
+  --c-text:    #cce0f0;
+  --c-text3:   #b0ccdf;
+  --c-muted2:  #6a8a9f;
+  --c-faint2:  #4e7090;
+  /* Bordas */
+  --c-border2: rgba(255,255,255,0.10);
+  --c-border3: rgba(255,255,255,0.12);
+  --c-border4: rgba(255,255,255,0.06);
+  /* Input */
+  --c-input:   #0f1c2a;
+}
+
+/* ── Portal wrapper ── */
+.sgq-portal {
+  background: #C8E3F5;
+  transition: background 0.35s;
+}
+
+/* ── Módulo NaoConformidades (fullpage) ── */
+.sgq-page-bg {
+  background: #C8E3F5;
+  color: #1e293b;
+  transition: background 0.35s, color 0.35s;
+}
+
+/* ═══════════════════════════════════════════
+   DARK MODE — ativado pela classe .dark no <html>
+   ═══════════════════════════════════════════ */
+
+.dark body {
+  background: #0d1b2a;
+  color: #cce0f0;
+}
+
+.dark ::-webkit-scrollbar-track { background: #0d1b2a; }
+.dark ::-webkit-scrollbar-thumb { background: #2a4a68; }
+
+.dark .sgq-portal {
+  background: #0d1b2a;
+}
+
+.dark .sgq-page-bg {
+  background: #0d1b2a;
+  color: #cce0f0;
+}
+
+/* ── Tailwind: backgrounds de card ── */
+.dark .bg-white {
+  background-color: #132030 !important;
+}
+.dark .bg-gray-50 {
+  background-color: #0f1c2a !important;
+}
+.dark .bg-gray-100 {
+  background-color: #0c1822 !important;
+}
+.dark .bg-gray-200 {
+  background-color: #0a1520 !important;
+}
+
+/* ── Tailwind: bordas ── */
+.dark .border-gray-50  { border-color: rgba(255,255,255,0.04) !important; }
+.dark .border-gray-100 { border-color: rgba(255,255,255,0.07) !important; }
+.dark .border-gray-200 { border-color: rgba(255,255,255,0.10) !important; }
+.dark .border-gray-300 { border-color: rgba(255,255,255,0.14) !important; }
+
+/* ── Tailwind: texto ── */
+.dark .text-gray-800 { color: #cce0f0 !important; }
+.dark .text-gray-700 { color: #b0ccdf !important; }
+.dark .text-gray-600 { color: #90aabf !important; }
+.dark .text-gray-500 { color: #6a8a9f !important; }
+.dark .text-gray-400 { color: #4e7090 !important; }
+.dark .text-gray-300 { color: #3a5870 !important; }
+.dark .text-gray-200 { color: #2a4060 !important; }
+
+/* ── Tailwind: hover states ── */
+.dark .hover\:bg-gray-50:hover  { background-color: rgba(255,255,255,0.04) !important; }
+.dark .hover\:bg-gray-100:hover { background-color: rgba(255,255,255,0.06) !important; }
+.dark .hover\:bg-gray-200:hover { background-color: rgba(255,255,255,0.08) !important; }
+.dark .hover\:border-gray-300:hover { border-color: rgba(255,255,255,0.18) !important; }
+
+/* ── Tailwind: badges de status (tons suavizados) ── */
+.dark .bg-red-50    { background-color: rgba(239,68,68,0.15)   !important; }
+.dark .bg-green-50  { background-color: rgba(16,185,129,0.15)  !important; }
+.dark .bg-amber-50  { background-color: rgba(245,158,11,0.15)  !important; }
+.dark .bg-blue-50   { background-color: rgba(59,130,246,0.15)  !important; }
+
+.dark .text-red-600   { color: #f87171 !important; }
+.dark .text-red-500   { color: #fc8a8a !important; }
+.dark .text-red-400   { color: #fca5a5 !important; }
+.dark .text-green-700 { color: #34d399 !important; }
+.dark .text-green-600 { color: #6ee7b7 !important; }
+.dark .text-amber-700 { color: #fbbf24 !important; }
+.dark .text-amber-600 { color: #fcd34d !important; }
+.dark .text-amber-500 { color: #fde68a !important; }
+.dark .text-blue-600  { color: #60a5fa !important; }
+.dark .text-blue-700  { color: #93c5fd !important; }
+
+.dark .border-red-100    { border-color: rgba(239,68,68,0.2)   !important; }
+.dark .border-red-200    { border-color: rgba(239,68,68,0.3)   !important; }
+.dark .border-green-200  { border-color: rgba(16,185,129,0.3)  !important; }
+.dark .border-blue-200   { border-color: rgba(59,130,246,0.3)  !important; }
+
+/* ── Inputs / select em dark mode ── */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #0f1c2a !important;
+  color: #cce0f0 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #4e7090 !important;
+}
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: rgba(59,130,246,0.5) !important;
+  outline: none;
+}
+
+/* ── Botões com borda/bg branco ── */
+.dark .bg-white.border,
+.dark button.bg-white {
+  background-color: #132030 !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  color: #cce0f0 !important;
+}
+
+/* ── Tabelas ── */
+.dark table thead tr {
+  background-color: rgba(255,255,255,0.03) !important;
+}
+.dark table tbody tr:hover {
+  background-color: rgba(255,255,255,0.03) !important;
+}
+
+/* ── Copilot / botões primários ── */
+.dark [class*="bg-\[#185FA5\]"] { background-color: #1a4a7c !important; }
+.dark [class*="hover:bg-\[#0c447c\]"]:hover { background-color: #153a60 !important; }

@@ -307,7 +307,7 @@ export default function AuditoriaProcesso() {
   return (
     <>
       <TopBar system="SGQ" moduleName="Auditoria de Processo" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
-    <div className="space-y-4">
+    <div className="space-y-4" style={{ paddingTop: 24 }}>
       <div className="grid grid-cols-3 gap-3">
         <div className="bg-white rounded-xl border border-gray-100 p-4 flex items-center gap-3">
           <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">

@@ -19,7 +19,7 @@ export function Fornecedores() {
   return (
     <>
       <TopBar system="SGQ" moduleName="Fornecedores" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
-    <div className="space-y-4">
+    <div className="space-y-4" style={{ paddingTop: 24 }}>
       <div className="flex justify-between items-center">
         <span className="text-sm text-gray-500">{fornecedores.length} fornecedores cadastrados</span>
         <button className="flex items-center gap-2 text-sm border border-gray-200 bg-white px-4 py-2 rounded-lg hover:bg-gray-50 text-gray-700">

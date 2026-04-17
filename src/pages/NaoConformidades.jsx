@@ -669,18 +669,18 @@ export default function NaoConformidades() {
   const COLUNAS = ['RNC', 'Cliente', 'Defeito / Responsável', 'Tipo', 'Área', 'Abertura', 'Prazo', 'Situação', '']
 
   return (
-    <div style={{ fontFamily:"'DM Sans',sans-serif", minHeight:'100vh', background:'#C8E3F5', margin:'-24px', color:'#1e293b' }}>
+    <div className="sgq-page-bg" style={{ fontFamily:"'DM Sans',sans-serif", minHeight:'100vh', margin:'-24px' }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
       <TopBar system="SGQ" moduleName="Módulo de Ocorrências" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
       <div style={{ padding:'28px 28px 48px' }}>
       {/* ── CABEÇALHO ── */}
       <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:28 }}>
         <div>
-          <div style={{ fontSize:10, color:'rgba(30,41,59,.45)', letterSpacing:2.5, textTransform:'uppercase', fontFamily:'DM Mono', marginBottom:8 }}>
+          <div style={{ fontSize:10, color:'var(--sgq-text-p45)', letterSpacing:2.5, textTransform:'uppercase', fontFamily:'DM Mono', marginBottom:8 }}>
             SGQ · Módulo de ocorrências
           </div>
-          <h1 style={{ fontSize:24, fontWeight:700, color:'#1e293b', margin:'0 0 6px', letterSpacing:-.4 }}>Não Conformidades</h1>
-          <p style={{ fontSize:13, color:'rgba(30,41,59,.55)', margin:0 }}>Registro, rastreabilidade e avaliação de eficácia — Grupo Incoflandres</p>
+          <h1 style={{ fontSize:24, fontWeight:700, color:'var(--sgq-text-main)', margin:'0 0 6px', letterSpacing:-.4 }}>Não Conformidades</h1>
+          <p style={{ fontSize:13, color:'var(--sgq-text-p55)', margin:0 }}>Registro, rastreabilidade e avaliação de eficácia — Grupo Incoflandres</p>
         </div>
         <button onClick={()=>setNovaNC(true)}
           style={{ display:'flex', alignItems:'center', gap:8, padding:'11px 22px', borderRadius:10, background:'linear-gradient(135deg,#185FA5,#0c447c)', border:'none', color:'#fff', fontSize:13, fontWeight:600, cursor:'pointer', boxShadow:'0 0 24px rgba(24,95,165,.35)', transition:'all .15s', whiteSpace:'nowrap', marginTop:4 }}
@@ -698,14 +698,14 @@ export default function NaoConformidades() {
           { label:'Pendentes',  valor:comPendentes,      cor:'#f59e0b', icon:AlertTriangle,  sub:'campo'+(comPendentes!==1?'s':'')+' em falta' },
           { label:'Encerradas', valor:encerradas.length, cor:'#10b981', icon:CheckCircle,    sub:'concluída'+(encerradas.length!==1?'s':'')    },
         ].map(({ label, valor, cor, icon:Icon, sub }) => (
-          <div key={label} style={{ background:'rgba(255,255,255,.75)', border:`0.5px solid ${cor}35`, borderRadius:16, padding:'20px', position:'relative', overflow:'hidden', boxShadow:'0 1px 4px rgba(30,41,59,.08)' }}>
+          <div key={label} style={{ background:'var(--sgq-card-75)', border:`0.5px solid ${cor}35`, borderRadius:16, padding:'20px', position:'relative', overflow:'hidden', boxShadow:'0 1px 4px var(--sgq-border-08)' }}>
             <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,${cor},${cor}88)` }}/>
             <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:12 }}>
-              <span style={{ fontSize:10, color:'rgba(30,41,59,.5)', letterSpacing:2, textTransform:'uppercase', fontFamily:'DM Mono' }}>{label}</span>
+              <span style={{ fontSize:10, color:'var(--sgq-text-p50)', letterSpacing:2, textTransform:'uppercase', fontFamily:'DM Mono' }}>{label}</span>
               <Icon size={15} color={cor} style={{ opacity:.7 }}/>
             </div>
             <div style={{ fontSize:34, fontWeight:700, color:cor, fontFamily:'DM Mono', lineHeight:1, marginBottom:4 }}>{valor}</div>
-            <div style={{ fontSize:11, color:'rgba(30,41,59,.45)' }}>{sub}</div>
+            <div style={{ fontSize:11, color:'var(--sgq-text-p45)' }}>{sub}</div>
           </div>
         ))}
       </div>
@@ -724,11 +724,11 @@ export default function NaoConformidades() {
       )}
 
       {/* ── PAINEL DA TABELA ── */}
-      <div style={{ background:'rgba(255,255,255,.78)', border:'0.5px solid rgba(30,41,59,.12)', borderRadius:16, overflow:'hidden', boxShadow:'0 2px 8px rgba(30,41,59,.08)' }}>
+      <div style={{ background:'var(--sgq-card-78)', border:'0.5px solid var(--sgq-border-12)', borderRadius:16, overflow:'hidden', boxShadow:'0 2px 8px var(--sgq-border-08)' }}>
 
         {/* Toolbar */}
-        <div style={{ padding:'14px 18px', borderBottom:'0.5px solid rgba(30,41,59,.1)', display:'flex', alignItems:'center', gap:10, flexWrap:'wrap' }}>
-          <div style={{ display:'flex', background:'rgba(30,41,59,.06)', border:'0.5px solid rgba(30,41,59,.1)', borderRadius:9, padding:3, gap:2 }}>
+        <div style={{ padding:'14px 18px', borderBottom:'0.5px solid var(--sgq-border-10)', display:'flex', alignItems:'center', gap:10, flexWrap:'wrap' }}>
+          <div style={{ display:'flex', background:'var(--sgq-surface-06)', border:'0.5px solid var(--sgq-border-10)', borderRadius:9, padding:3, gap:2 }}>
             {[['abertas','Em aberto',abertas.length,'#3b82f6'],['encerradas','Encerradas',encerradas.length,'#10b981']].map(([id,lbl,cnt,cor])=>(
               <button key={id} onClick={()=>setAba(id)}
                 style={{ padding:'6px 14px', borderRadius:7, fontSize:12, fontWeight:aba===id?600:400, cursor:'pointer', border:'none', transition:'all .15s',
@@ -737,32 +737,32 @@ export default function NaoConformidades() {
                   outline:aba===id?`1px solid ${cor}30`:'none' }}>
                 {lbl}
                 <span style={{ marginLeft:6, padding:'1px 7px', borderRadius:20, fontSize:10, fontWeight:700,
-                  background:aba===id?`${cor}25`:'rgba(30,41,59,.07)', color:aba===id?cor:'rgba(30,41,59,.4)' }}>{cnt}</span>
+                  background:aba===id?`${cor}25`:'var(--sgq-border-07)', color:aba===id?cor:'rgba(30,41,59,.4)' }}>{cnt}</span>
               </button>
             ))}
           </div>
 
           <div style={{ position:'relative', flex:1, minWidth:220 }}>
-            <Search size={14} color='rgba(30,41,59,.35)' style={{ position:'absolute', left:12, top:'50%', transform:'translateY(-50%)', pointerEvents:'none' }}/>
+            <Search size={14} color='var(--sgq-text-p35)' style={{ position:'absolute', left:12, top:'50%', transform:'translateY(-50%)', pointerEvents:'none' }}/>
             <input placeholder="Buscar por RNC, cliente, defeito, área..." value={search} onChange={e=>setSearch(e.target.value)}
-              style={{ width:'100%', boxSizing:'border-box', padding:'8px 12px 8px 36px', background:'rgba(255,255,255,.65)', border:'0.5px solid rgba(30,41,59,.13)', borderRadius:9, color:'#1e293b', fontSize:13, fontFamily:'DM Sans', outline:'none', transition:'border-color .15s' }}
+              style={{ width:'100%', boxSizing:'border-box', padding:'8px 12px 8px 36px', background:'var(--sgq-card-65)', border:'0.5px solid var(--sgq-border-13)', borderRadius:9, color:'var(--sgq-text-main)', fontSize:13, fontFamily:'DM Sans', outline:'none', transition:'border-color .15s' }}
               onFocus={e=>e.target.style.borderColor='rgba(59,130,246,.5)'}
-              onBlur={e=>e.target.style.borderColor='rgba(30,41,59,.13)'}/>
+              onBlur={e=>e.target.style.borderColor='var(--sgq-border-13)'}/>
           </div>
 
           <div style={{ position:'relative' }}>
-            <Filter size={13} color='rgba(30,41,59,.35)' style={{ position:'absolute', left:11, top:'50%', transform:'translateY(-50%)', pointerEvents:'none' }}/>
+            <Filter size={13} color='var(--sgq-text-p35)' style={{ position:'absolute', left:11, top:'50%', transform:'translateY(-50%)', pointerEvents:'none' }}/>
             <select value={filtroTipo} onChange={e=>setFiltroTipo(e.target.value)}
-              style={{ padding:'8px 32px 8px 32px', background:'rgba(255,255,255,.65)', border:'0.5px solid rgba(30,41,59,.13)', borderRadius:9, color:'rgba(30,41,59,.75)', fontSize:12, fontFamily:'DM Sans', outline:'none', cursor:'pointer', appearance:'none' }}>
+              style={{ padding:'8px 32px 8px 32px', background:'var(--sgq-card-65)', border:'0.5px solid var(--sgq-border-13)', borderRadius:9, color:'var(--sgq-text-p75)', fontSize:12, fontFamily:'DM Sans', outline:'none', cursor:'pointer', appearance:'none' }}>
               <option value="todos">Todos os tipos</option>
               <option value="Externa">Externa</option>
               <option value="Interna">Interna</option>
               <option value="Fornecedor">Fornecedor</option>
             </select>
-            <ChevronDown size={12} color='rgba(30,41,59,.4)' style={{ position:'absolute', right:10, top:'50%', transform:'translateY(-50%)', pointerEvents:'none' }}/>
+            <ChevronDown size={12} color='var(--sgq-text-p40)' style={{ position:'absolute', right:10, top:'50%', transform:'translateY(-50%)', pointerEvents:'none' }}/>
           </div>
 
-          <span style={{ fontSize:12, color:'rgba(30,41,59,.4)', marginLeft:'auto', fontFamily:'DM Mono' }}>
+          <span style={{ fontSize:12, color:'var(--sgq-text-p40)', marginLeft:'auto', fontFamily:'DM Mono' }}>
             {listaAtual.length} registro{listaAtual.length!==1?'s':''}
           </span>
         </div>
@@ -771,9 +771,9 @@ export default function NaoConformidades() {
         <div style={{ overflowX:'auto' }}>
           <table style={{ width:'100%', borderCollapse:'collapse', fontSize:13 }}>
             <thead>
-              <tr style={{ borderBottom:'0.5px solid rgba(30,41,59,.1)' }}>
+              <tr style={{ borderBottom:'0.5px solid var(--sgq-border-10)' }}>
                 {COLUNAS.map(c => (
-                  <th key={c} style={{ padding:'10px 16px', textAlign:'left', fontSize:10, fontWeight:700, color:'rgba(30,41,59,.4)', letterSpacing:1.2, textTransform:'uppercase', whiteSpace:'nowrap', background:'rgba(30,41,59,.04)' }}>
+                  <th key={c} style={{ padding:'10px 16px', textAlign:'left', fontSize:10, fontWeight:700, color:'var(--sgq-text-p40)', letterSpacing:1.2, textTransform:'uppercase', whiteSpace:'nowrap', background:'var(--sgq-surface-04)' }}>
                     {c}
                   </th>
                 ))}
@@ -782,10 +782,10 @@ export default function NaoConformidades() {
             <tbody>
               {listaAtual.length === 0 && (
                 <tr>
-                  <td colSpan={9} style={{ textAlign:'center', padding:'60px 0', color:'rgba(30,41,59,.3)' }}>
+                  <td colSpan={9} style={{ textAlign:'center', padding:'60px 0', color:'var(--sgq-text-p30)' }}>
                     <AlertCircle size={28} style={{ margin:'0 auto 10px', display:'block', opacity:.4 }}/>
                     <div style={{ fontSize:14 }}>Nenhuma não conformidade encontrada</div>
-                    <div style={{ fontSize:12, marginTop:4, color:'rgba(30,41,59,.25)' }}>Ajuste os filtros ou registre uma nova NC</div>
+                    <div style={{ fontSize:12, marginTop:4, color:'var(--sgq-text-p25)' }}>Ajuste os filtros ou registre uma nova NC</div>
                   </td>
                 </tr>
               )}
@@ -799,7 +799,7 @@ export default function NaoConformidades() {
 
                 return (
                   <tr key={nc.id} onClick={()=>setNcAtiva(nc)}
-                    style={{ borderBottom:'0.5px solid rgba(30,41,59,.07)', cursor:'pointer', transition:'background .12s',
+                    style={{ borderBottom:'0.5px solid var(--sgq-border-07)', cursor:'pointer', transition:'background .12s',
                       background: atrasada ? 'rgba(239,68,68,.05)' : 'transparent' }}
                     onMouseEnter={e=>e.currentTarget.style.background='rgba(30,41,59,.04)'}
                     onMouseLeave={e=>e.currentTarget.style.background=atrasada?'rgba(239,68,68,.05)':'transparent'}>
@@ -808,20 +808,20 @@ export default function NaoConformidades() {
                     <td style={{ padding:'14px 16px', whiteSpace:'nowrap' }}>
                       <div style={{ display:'flex', alignItems:'center', gap:8 }}>
                         <div style={{ width:3, height:34, borderRadius:2, background:tipoC.cor, opacity:.8, flexShrink:0 }}/>
-                        <span style={{ fontSize:12, fontWeight:700, color:'#334155', fontFamily:'DM Mono' }}>{nc.rnc}</span>
+                        <span style={{ fontSize:12, fontWeight:700, color:'var(--sgq-text-334)', fontFamily:'DM Mono' }}>{nc.rnc}</span>
                       </div>
                     </td>
 
                     {/* Cliente */}
                     <td style={{ padding:'14px 16px' }}>
-                      <div style={{ fontWeight:500, color:'#1e293b', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', maxWidth:130 }}>{nc.cliente}</div>
-                      {nc.nCliente && <div style={{ fontSize:11, color:'rgba(30,41,59,.45)', marginTop:1 }}>Nº {nc.nCliente}</div>}
+                      <div style={{ fontWeight:500, color:'var(--sgq-text-main)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', maxWidth:130 }}>{nc.cliente}</div>
+                      {nc.nCliente && <div style={{ fontSize:11, color:'var(--sgq-text-p45)', marginTop:1 }}>Nº {nc.nCliente}</div>}
                     </td>
 
                     {/* Defeito */}
                     <td style={{ padding:'14px 16px' }}>
-                      <div style={{ color:'#1e293b', fontWeight:500, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', maxWidth:300 }}>{nc.defeito}</div>
-                      <div style={{ fontSize:11, color:'rgba(30,41,59,.45)', marginTop:1, display:'flex', alignItems:'center', gap:4 }}>
+                      <div style={{ color:'var(--sgq-text-main)', fontWeight:500, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', maxWidth:300 }}>{nc.defeito}</div>
+                      <div style={{ fontSize:11, color:'var(--sgq-text-p45)', marginTop:1, display:'flex', alignItems:'center', gap:4 }}>
                         <User size={10}/>{nc.responsavel}
                       </div>
                     </td>
@@ -835,14 +835,14 @@ export default function NaoConformidades() {
 
                     {/* Área */}
                     <td style={{ padding:'14px 16px' }}>
-                      <span style={{ fontSize:12, color:'rgba(30,41,59,.6)', display:'flex', alignItems:'center', gap:4 }}>
-                        <Tag size={11} color='rgba(30,41,59,.35)'/>{nc.area}
+                      <span style={{ fontSize:12, color:'var(--sgq-text-p60)', display:'flex', alignItems:'center', gap:4 }}>
+                        <Tag size={11} color='var(--sgq-text-p35)'/>{nc.area}
                       </span>
                     </td>
 
                     {/* Data abertura */}
                     <td style={{ padding:'14px 16px', whiteSpace:'nowrap' }}>
-                      <span style={{ fontSize:12, color:'rgba(30,41,59,.55)', fontFamily:'DM Mono' }}>{nc.dataAbertura}</span>
+                      <span style={{ fontSize:12, color:'var(--sgq-text-p55)', fontFamily:'DM Mono' }}>{nc.dataAbertura}</span>
                     </td>
 
                     {/* Prazo */}
@@ -856,7 +856,7 @@ export default function NaoConformidades() {
                           {dias>0 ? `${dias}d atraso` : dias===0 ? 'Vence hoje' : `${Math.abs(dias)}d restam`}
                         </span>
                       ) : (
-                        <span style={{ fontSize:12, color:'rgba(30,41,59,.3)' }}>—</span>
+                        <span style={{ fontSize:12, color:'var(--sgq-text-p30)' }}>—</span>
                       )}
                     </td>
 
@@ -871,7 +871,7 @@ export default function NaoConformidades() {
 
                     {/* Seta */}
                     <td style={{ padding:'14px 16px', textAlign:'center' }}>
-                      <ChevronRight size={15} color='rgba(30,41,59,.25)'/>
+                      <ChevronRight size={15} color='var(--sgq-text-p25)'/>
                     </td>
                   </tr>
                 )
@@ -882,8 +882,8 @@ export default function NaoConformidades() {
 
         {/* Rodapé */}
         {listaAtual.length > 0 && (
-          <div style={{ padding:'12px 18px', borderTop:'0.5px solid rgba(30,41,59,.08)', background:'rgba(30,41,59,.04)', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-            <span style={{ fontSize:12, color:'rgba(30,41,59,.4)', fontFamily:'DM Mono' }}>
+          <div style={{ padding:'12px 18px', borderTop:'0.5px solid var(--sgq-border-08)', background:'var(--sgq-surface-04)', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+            <span style={{ fontSize:12, color:'var(--sgq-text-p40)', fontFamily:'DM Mono' }}>
               {listaAtual.length} de {(aba==='abertas'?abertas:encerradas).length} registros
             </span>
             {aba==='abertas' && atrasadas>0 && (

@@ -38,7 +38,7 @@ export default function GestaoRisco() {
   return (
     <>
       <TopBar system="SGQ" moduleName="Gestão de Risco" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
-    <div className="space-y-4">
+    <div className="space-y-4" style={{ paddingTop: 24 }}>
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
           {['todos','critico','alto','medio'].map(f => (

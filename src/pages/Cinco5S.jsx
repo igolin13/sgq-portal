@@ -141,7 +141,7 @@ export default function Cinco5S() {
   return (
     <>
       <TopBar system="SGQ" moduleName="Gestão 5S" user={{ name: "Igor Bittencourt", role: "Gestão da Qualidade", initials: "IB" }} />
-    <div className="space-y-4">
+    <div className="space-y-4" style={{ paddingTop: 24 }}>
       <div className="flex items-center justify-between">
         <div className="flex gap-1 bg-white border border-gray-100 rounded-lg p-1">
           {ABAS.map(t => (
